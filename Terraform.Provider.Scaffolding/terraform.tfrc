@@ -1,5 +1,0 @@
-provider_installation {
-	dev_overrides {
-		"scaffolding" = "C:/repos/terraform-provider-scaffolding/Terraform.Provider.Scaffolding/bin/Debug/net6.0"
-	}
-}
