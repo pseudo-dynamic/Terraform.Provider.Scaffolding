@@ -28,7 +28,7 @@ provider_installation {
 	</Target>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\PseudoDynamic.Terraform.Toolset\src\PseudoDynamic.Terraform.Plugin.Sdk\PseudoDynamic.Terraform.Plugin.Sdk.csproj" />
+	  <PackageReference Include="PseudoDynamic.Terraform.Plugin.Sdk" Version="0.1.0-main.1" />
 	</ItemGroup>
 
 </Project>

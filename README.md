@@ -13,7 +13,7 @@ Assuming your workdir is this repository root directory:
 
 1. Run `dotnet build`
 2. Set environment variable `TF_CLI_CONFIG_FILE=Terraform.Provider.Scaffolding/terraform.tfrc`
-3. Run `Terraform validate`, `Terraform plan`, `Terraform apply` or `Terraform destroy`
+3. Run `terraform validate`, `terraform plan`, `terraform apply` or `terraform destroy`
 
 # Provider Development
 
