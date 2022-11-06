@@ -2,7 +2,6 @@
 using PseudoDynamic.Terraform.Plugin;
 using PseudoDynamic.Terraform.Plugin.Schema;
 using PseudoDynamic.Terraform.Plugin.Sdk;
-using System.Diagnostics;
 
 const string providerName = "registry.terraform.io/pseudo-dynamic/scaffolding";
 
@@ -43,10 +42,9 @@ internal class ResourceImpl : Resource<ResourceSchema>
 
     public override Task Plan(IPlanContext<ResourceSchema, object> context)
     {
-        if (context.State == null)
+        if (context.HasPlan(out var planContext))
         {
-            ICreateContext<ResourceSchema, object> createContext = context;
-            createContext.Plan.ComputedAttribute = TerraformValue.OfUnknown<string>();
+            planContext.Plan.ComputedAttribute = TerraformValue.OfUnknown<string>();
         }
 
         return context.CompletedTask;
@@ -54,10 +52,14 @@ internal class ResourceImpl : Resource<ResourceSchema>
 
     public override Task Apply(IApplyContext<ResourceSchema, object> context)
     {
-        if (context.State == null)
+        if (context.IsCreating(out var createContext))
         {
-            ICreateContext<ResourceSchema, object> createContext = context;
-            createContext.Plan.ComputedAttribute = "Hello from C#";
+            createContext.Plan.ComputedAttribute = "Hello from C# (Creating)";
+        }
+
+        if (context.IsUpdating(out var updateContext))
+        {
+            createContext.Plan.ComputedAttribute = "Hello from C# (Updating)";
         }
 
         return context.CompletedTask;
